@@ -52,10 +52,10 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install factor-analyzer \
 	&& pip install graphviz \
 	&& pip install dtreeviz \
-	&& conda install -c conda-forge lightgbm \
+	&& pip install lightgbm \
 	&& pip install optuna \
-	&& conda install -c anaconda py-xgboost \
-	&& conda install -c conda-forge catboost \
+	&& pip install xgboost \
+	&& pip install catboost \
 	# matplotlib japanese
 	&& pip install -U pip \
 	&& pip install fastprogress japanize-matplotlib
