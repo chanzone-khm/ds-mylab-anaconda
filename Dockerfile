@@ -58,12 +58,7 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install catboost \
 	# matplotlib japanese
 	&& pip install -U pip \
-	&& pip install fastprogress japanize-matplotlib \
-	&& pip install sweetviz \
-	&& pip install pandas-profiling
-
-RUN sudo apt install fonts-noto-cjk
-RUN sudo fc-cache -fv
+	&& pip install fastprogress japanize-matplotlib
 
 
 WORKDIR /
