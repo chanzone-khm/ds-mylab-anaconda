@@ -62,6 +62,7 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install sweetviz \
 	&& pip install pandas-profiling
 
+#sweetvizを実行するために必要
 RUN sudo apt install fonts-noto-cjk
 RUN sudo fc-cache -fv
 
