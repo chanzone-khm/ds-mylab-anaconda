@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+﻿FROM ubuntu:latest
 
 # update
 RUN apt-get -y update && apt-get -y upgrade
@@ -58,7 +58,13 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install catboost \
 	# matplotlib japanese
 	&& pip install -U pip \
-	&& pip install fastprogress japanize-matplotlib
+	&& pip install fastprogress japanize-matplotlib \
+	&& pip install sweetviz \
+	&& pip install pandas-profiling
+
+#sweetvizを実行するために必要
+RUN sudo apt install fonts-noto-cjk
+RUN sudo fc-cache -fv
 
 
 WORKDIR /
