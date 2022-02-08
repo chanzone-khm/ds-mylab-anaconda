@@ -29,15 +29,26 @@ RUN pip install --upgrade pip
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 
-##### ↓　anaconda versionあげたらインストールできなくなった・・（？
-	# Variable Inppector (使用している変数一覧を表示)
-#RUN	jupyter labextension install @lckr/jupyterlab_variableinspector
-	# コード補完
-#RUN	pip install autopep8
-#RUN	pip install jupyterlab_code_formatter
-#RUN	jupyter labextension install @ryantam626/jupyterlab_code_formatter
-#RUN	jupyter serverextension enable --py jupyterlab_code_formatter
+# #### ↓　anaconda versionあげたらインストールできなくなった・・（？
+# 	# Variable Inppector (使用している変数一覧を表示)
+# RUN	jupyter labextension install @lckr/jupyterlab_variableinspector
+# 	# コード補完
+# RUN	pip install autopep8
+# RUN	pip install jupyterlab_code_formatter
+# RUN	jupyter labextension install @ryantam626/jupyterlab_code_formatter
+# RUN	jupyter serverextension enable --py jupyterlab_code_formatter
 
+RUN pip install --no-cache-dir \
+    black \
+    jupyterlab \
+    jupyterlab_code_formatter \
+    jupyterlab-git \
+    lckr-jupyterlab-variableinspector \
+    jupyterlab_widgets \
+    ipywidgets \
+    import-ipynb
+
+RUN sudo apt-get install git-all
 
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
@@ -47,7 +58,7 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install opencv-python \
 	&& pip install opencv-contrib-python \
 	&& apt-get install -y libgl1-mesa-dev \
-# install other packages
+	# install other packages
 	&& pip install category_encoders \
 	&& pip install factor-analyzer \
 	&& pip install graphviz \
@@ -59,12 +70,12 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	# matplotlib japanese
 	&& pip install -U pip \
 	&& pip install fastprogress japanize-matplotlib \
+	# sweetviz
 	&& pip install sweetviz \
-	&& pip install pandas-profiling
+	&& sudo apt install fonts-noto-cjk \
 
-#sweetvizを実行するために必要
-RUN sudo apt install fonts-noto-cjk
-# RUN sudo fc-cache -fv
+	&& pip install pandas-profiling \
+	&& pip install ipynb_path
 
 
 WORKDIR /
