@@ -48,7 +48,7 @@ RUN pip install --no-cache-dir \
     ipywidgets \
     import-ipynb
 
-RUN sudo apt-get install git-all
+RUN sudo apt-get install -y git-all
 
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
