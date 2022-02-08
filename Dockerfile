@@ -48,6 +48,10 @@ RUN pip install --no-cache-dir \
     ipywidgets \
     import-ipynb
 
+# gitをインストールするとtzdataのtimezone設定を要求されてビルドが止まるので対応
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+  && apt-get install -y tzdata
 RUN sudo apt-get install -y git-all
 
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
@@ -58,7 +62,6 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install opencv-python \
 	&& pip install opencv-contrib-python \
 	&& apt-get install -y libgl1-mesa-dev \
-	# install other packages
 	&& pip install category_encoders \
 	&& pip install factor-analyzer \
 	&& pip install graphviz \
@@ -67,13 +70,10 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install optuna \
 	&& pip install xgboost \
 	&& pip install catboost \
-	# matplotlib japanese
 	&& pip install -U pip \
 	&& pip install fastprogress japanize-matplotlib \
-	# sweetviz
 	&& pip install sweetviz \
 	&& sudo apt install fonts-noto-cjk \
-
 	&& pip install pandas-profiling \
 	&& pip install ipynb_path
 
