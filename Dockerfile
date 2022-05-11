@@ -31,6 +31,7 @@ RUN apt-get install -y nodejs
 
 # #### ↓　anaconda versionあげたらインストールできなくなった・・（？
 # 	# Variable Inppector (使用している変数一覧を表示)
+
 # RUN	jupyter labextension install @lckr/jupyterlab_variableinspector
 # 	# コード補完
 # RUN	pip install autopep8
@@ -81,6 +82,9 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 WORKDIR /
 RUN mkdir /work
 
+# TODO 暫定対策 markupsafeにsoft_unicodeがありそれをimportしているが、最新versionのmarkupsafeからsoft_unicodeがremoveされた模様。 markupsafeを古いversionに戻してあげる
+# ImportError: cannot import name 'soft_unicode' from 'markupsafe' (/opt/anaconda3/lib/python3.9/site-packages/markupsafe/__init__.py)
+RUN pip install MarkupSafe==2.0.1
 
 # install jupyterlab
 ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root", "--LabApp.token=''"]
