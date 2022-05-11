@@ -14,9 +14,9 @@ vim
 WORKDIR /opt
 # download anaconda package
 # archive -> https://repo.continuum.io/archive/
-RUN wget https://repo.continuum.io/archive/Anaconda3-2021.05-Linux-x86_64.sh && \
-sh /opt/Anaconda3-2021.05-Linux-x86_64.sh -b -p /opt/anaconda3 && \
-rm -f Anaconda3-2021.05-Linux-x86_64.sh
+RUN wget https://repo.continuum.io/archive/Anaconda3-2022.05-Linux-x86_64.sh && \
+sh /opt/Anaconda3-2022.05-Linux-x86_64.sh -b -p /opt/anaconda3 && \
+rm -f Anaconda3-2022.05-Linux-x86_64.sh
 ENV PATH /opt/anaconda3/bin:$PATH
 
 # update pip and conda
@@ -57,7 +57,7 @@ RUN sudo apt-get install -y git-all
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 ###install python packages
-# install OpenCV
+
 RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install opencv-python \
 	&& pip install opencv-contrib-python \
