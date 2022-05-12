@@ -76,8 +76,8 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install sweetviz \
 	&& sudo apt install fonts-noto-cjk \
 	&& pip install pandas-profiling \
-	&& pip install ipynb_path
-
+	&& pip install ipynb_path \
+	&& pip install -U imbalanced-learn
 
 WORKDIR /
 RUN mkdir /work
