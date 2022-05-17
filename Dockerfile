@@ -14,9 +14,9 @@ vim
 WORKDIR /opt
 # download anaconda package
 # archive -> https://repo.continuum.io/archive/
-RUN wget https://repo.continuum.io/archive/Anaconda3-2021.05-Linux-x86_64.sh && \
-sh /opt/Anaconda3-2021.05-Linux-x86_64.sh -b -p /opt/anaconda3 && \
-rm -f Anaconda3-2021.05-Linux-x86_64.sh
+RUN wget https://repo.continuum.io/archive/Anaconda3-2022.05-Linux-x86_64.sh && \
+sh /opt/Anaconda3-2022.05-Linux-x86_64.sh -b -p /opt/anaconda3 && \
+rm -f Anaconda3-2022.05-Linux-x86_64.sh
 ENV PATH /opt/anaconda3/bin:$PATH
 
 # update pip and conda
@@ -31,6 +31,7 @@ RUN apt-get install -y nodejs
 
 # #### ↓　anaconda versionあげたらインストールできなくなった・・（？
 # 	# Variable Inppector (使用している変数一覧を表示)
+
 # RUN	jupyter labextension install @lckr/jupyterlab_variableinspector
 # 	# コード補完
 # RUN	pip install autopep8
@@ -57,7 +58,7 @@ RUN sudo apt-get install -y git-all
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 ###install python packages
-# install OpenCV
+
 RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install opencv-python \
 	&& pip install opencv-contrib-python \
@@ -75,12 +76,16 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& pip install sweetviz \
 	&& sudo apt install fonts-noto-cjk \
 	&& pip install pandas-profiling \
-	&& pip install ipynb_path
-
+	&& pip install ipynb_path \
+	&& pip install -U imbalanced-learn \
+	&& conda install -c conda-forge matplotlib-venn -y
 
 WORKDIR /
 RUN mkdir /work
 
+# TODO 暫定対策 markupsafeにsoft_unicodeがありそれをimportしているが、最新versionのmarkupsafeからsoft_unicodeがremoveされた模様。 markupsafeを古いversionに戻してあげる
+# ImportError: cannot import name 'soft_unicode' from 'markupsafe' (/opt/anaconda3/lib/python3.9/site-packages/markupsafe/__init__.py)
+RUN pip install MarkupSafe==2.0.1
 
 # install jupyterlab
 ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root", "--LabApp.token=''"]
