@@ -77,7 +77,8 @@ RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0 \
 	&& sudo apt install fonts-noto-cjk \
 	&& pip install pandas-profiling \
 	&& pip install ipynb_path \
-	&& pip install -U imbalanced-learn
+	&& pip install -U imbalanced-learn \
+	&& conda install -c conda-forge matplotlib-venn -y
 
 WORKDIR /
 RUN mkdir /work
