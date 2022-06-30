@@ -47,7 +47,8 @@ RUN pip install --no-cache-dir \
     lckr-jupyterlab-variableinspector \
     jupyterlab_widgets \
     ipywidgets \
-    import-ipynb
+    import-ipynb \
+	jupyterlab-unfold
 
 # gitをインストールするとtzdataのtimezone設定を要求されてビルドが止まるので対応
 ENV DEBIAN_FRONTEND=noninteractive
