@@ -26,7 +26,8 @@ RUN pip install --upgrade pip
 #参考URL	https://qiita.com/canonrock16/items/d166c93087a4aafd2db4
 #		http://tonop.cocolog-nifty.com/blog/2020/07/post-a216ae.html
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+# RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x
 RUN apt-get install -y nodejs
 
 # #### ↓　anaconda versionあげたらインストールできなくなった・・（？
